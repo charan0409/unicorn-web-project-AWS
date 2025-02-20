@@ -108,6 +108,15 @@ ln -s /opt/tomcat/bin/shutdown.sh /usr/local/bin/tomcatdown
 # Now start the tomcat. 
 tomcatup
 ```
+# The default Tomcat environment in the image is:
+```
+CATALINA_BASE:   /usr/local/tomcat
+CATALINA_HOME:   /usr/local/tomcat
+CATALINA_TMPDIR: /usr/local/tomcat/temp
+JRE_HOME:        /usr
+CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+```
+The configuration files are available in /usr/local/tomcat/conf/. By default, no user is included in the "manager-gui" role required to operate the "/manager/html" web application. If you wish to use this app, you must define such a user in tomcat-users.xml
 # Now access the tomcat by web-browser.
 open a new tab and enter http://Public IPv4 address:8080/
 ![image](https://github.com/user-attachments/assets/904c63d4-58d5-4e47-9d21-3ef293e60885)
