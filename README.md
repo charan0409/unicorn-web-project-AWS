@@ -111,3 +111,25 @@ tomcatup
 # Now access the tomcat by web-browser.
 open a new tab and enter http://Public IPv4 address:8080/
 ![image](https://github.com/user-attachments/assets/904c63d4-58d5-4e47-9d21-3ef293e60885)
+
+**********************************************************************************************************************
+# Containarization
+# Create a Dockerfile with below docker instructions
+```
+FROM tomcat:9.0
+
+COPY ./unicorn-web-project-AWS/unicorn-web-project/target/unicorn-web-project.war /usr/local/tomcat/webapps/ROOT.war    # copy war file from host to container path /usr/local/tomcat/webapps/*
+
+CMD ["catalina.sh", "run"]
+```
+# Build the docker image
+docker build -t "name-of-the-image" /path/to/Dockerfile
+```
+docker build -t unicorn .
+```
+# Run the image as container
+```
+docker run -it -p 8080:8080 unicorn:latest
+```
+# Verify application by hitting <ip>:8080 in browser
+![image](https://github.com/user-attachments/assets/98007026-d99e-48ca-a90d-6c9bf4a535cc)
