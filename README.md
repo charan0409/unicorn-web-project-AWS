@@ -63,3 +63,51 @@ Modify the index.jsp file to customize the HTML code (just to make it your own!)
 </body>
 </html>
 ```
+# Install Tomcat on Amazon linux 2023
+# Download Tomcat Binary file.
+```
+# Become a root
+sudo su -
+cd /opt
+wget wget https://archive.apache.org/dist/tomcat/tomcat-10/v10.0.23/bin/apache-tomcat-10.0.23.tar.gz
+# unzip tomcat binary
+tar -xvzf apache-tomcat-10.0.23.tar.gz 
+# Rename for simplicity if required
+mv apache-tomcat-10.0.23.tar.gz tomcat
+```
+# Create a tomcat user.
+its not a good practice to run tomcat using root user.
+```
+# Become a root,no need to execute this cmd if your already root user.
+sudo su -
+# create a tomcat user
+adduser tomcat
+# create a password for tomcat user
+passwd tomcat 
+# enter the New password then Retype new password, you should see passwd: all authentication tokens updated successfully.
+```
+# Now change the ownership of /opt/tomcat file from root to tomcat being a root user.
+```
+# Become a root, no need to execute this cmd if your already root user.
+sudo su - 
+chown -R tomcat:tomcat /opt/tomcat
+```
+![image](https://github.com/user-attachments/assets/5e3d04c2-7199-4512-97fd-7dbfe6c314f9)
+
+# In tomcat-10 Execute Permission are already present to catalina.sh, startup.sh & shutdown.sh
+if not follow below steps
+```
+# Go to bin directory.
+cd /opt/tomcat/bin
+chmod +x catalina.sh startup.sh  shutdown.sh
+```
+# Create a link files for Tomcat Server up and Down.
+```
+ln -s /opt/tomcat/bin/startup.sh /usr/local/bin/tomcatup
+ln -s /opt/tomcat/bin/shutdown.sh /usr/local/bin/tomcatdown
+# Now start the tomcat. 
+tomcatup
+```
+# Now access the tomcat by web-browser.
+open a new tab and enter http://Public IPv4 address:8080/
+![image](https://github.com/user-attachments/assets/904c63d4-58d5-4e47-9d21-3ef293e60885)
